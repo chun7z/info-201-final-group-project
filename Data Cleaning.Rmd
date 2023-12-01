@@ -1,6 +1,6 @@
 ---
 title: "Final Project"
-author: "Michelle Ngo"
+author: "Michelle Ngo, Chunqi Zhao, Kelly Chang, Eunseo Chung"
 date: "2023-12-01"
 output: html_document
 ---
@@ -14,5 +14,32 @@ write_csv(restmen, file = "Documents/data/restmen.csv")
 restaurant <- read_delim("Documents/archive/restaurants.csv")
 rest <- restaurant[1:25000, c(1:11)]
 write_csv(rest, file = "Documents/data/rest.csv")
+```
+```{r}
+rest <- rest %>% 
+  select(id, position, name, score, ratings, price_range, zip_code) %>% 
+  mutate(popular = ifelse(position > 30, 1, 0)) %>% 
+  group_by(zip_code) %>% 
+  mutate(avgscoreinarea = mean(score, na.rm = TRUE))
+rest
+```
+```{r}
+restmen$price <- as.numeric(gsub("\\USD", "", restmen$price))
+
+restmen2 <- restmen %>% 
+  rename(id = restaurant_id) %>% 
+  group_by(id) %>% 
+  mutate(avgprice = mean(price, na.rm = TRUE))
+restmen2
+```
+```{r}
+cheap <- range(restmen2$price)/2
+restmen2 %>% 
+  mutate(p = ifelse(price < cheap, 1, 0))
+restmen2
+```
+```{r}
+merged <- inner_join(restmen2, rest, by = join_by(id))
+write_csv(merged, file = "Documents/data/merged.csv")
 ```
 
