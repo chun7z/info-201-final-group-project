@@ -1,0 +1,17 @@
+---
+title: "Final Project"
+author: "Michelle Ngo"
+date: "2023-12-01"
+output: html_document
+---
+```{r}
+library(readr)
+library(tidyverse)
+restrauntmenus <- read_delim("Documents/archive/restaurant-menus.csv")
+head(restrauntmenus)
+
+restaurant <- read_delim("Documents/archive/restaurants.csv")
+head(restaurant)
+dim(restaurant)
+```
+
