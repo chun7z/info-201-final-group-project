@@ -7,11 +7,12 @@ output: html_document
 ```{r}
 library(readr)
 library(tidyverse)
-restrauntmenus <- read_delim("Documents/archive/restaurant-menus.csv")
-head(restrauntmenus)
+restaurantmenus <- read_delim("Documents/archive/restaurant-menus.csv")
+restmen <- restaurantmenus[1:25000, c(1:5)]
+write_csv(restmen, file = "Documents/data/restmen.csv")
 
 restaurant <- read_delim("Documents/archive/restaurants.csv")
-head(restaurant)
-dim(restaurant)
+rest <- restaurant[1:25000, c(1:11)]
+write_csv(rest, file = "Documents/data/rest.csv")
 ```
 
