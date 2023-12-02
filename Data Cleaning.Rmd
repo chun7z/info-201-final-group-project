@@ -25,21 +25,17 @@ rest
 ```
 ```{r}
 restmen$price <- as.numeric(gsub("\\USD", "", restmen$price))
-
-restmen2 <- restmen %>% 
-  rename(id = restaurant_id) %>% 
-  group_by(id) %>% 
-  mutate(avgprice = mean(price, na.rm = TRUE))
-restmen2
-```
-```{r}
 cheap <- range(restmen2$price)/2
-restmen2 %>% 
+
+restmen <- restmen %>% 
+  group_by(id) %>% 
+  mutate(avgprice = mean(price, na.rm = TRUE)) %>% 
   mutate(p = ifelse(price < cheap, 1, 0))
-restmen2
+restmen
 ```
+
 ```{r}
-merged <- inner_join(restmen2, rest, by = join_by(id))
+merged <- inner_join(restmen, rest, by = join_by(id))
 write_csv(merged, file = "Documents/data/merged.csv")
 ```
 
