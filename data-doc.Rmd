@@ -1,0 +1,42 @@
+---
+title: "Data Documentation"
+author: "Michelle Ngo, Chunqi Zhao, Kelly Chang, Eunseo Chung"
+date: "2023-12-05"
+output: html_document
+---
+
+# Data Documentation
+The link to the original data source: [Kaggle UberEats Dataset](https://www.kaggle.com/datasets/ahmedshahriarsakib/uber-eats-usa-restaurants-menus/)
+
+## Variables
+* id (Restaurant id)
+* position (Restaurant position in UberEats search result)
+* name.y (Restaurant name)
+* name.x (Menu meal name)
+* score (Restaurant score)
+* ratings (Ratings count)
+* category (Restaurant category)
+* avgprice (Average price by restaurant)
+* morethanavg (Price more than $12.60)
+* popular (Position greater than or less than 30)
+* avgscoreinarea (Average score by zip code )
+* zip_code (Zip code)
+* lat (Latitude)
+* lng (Longitude)
+* category (Menu category)
+* name (Menu Name)
+* description (Menu description)
+* price (Menu price)
+
+## Basic Summary Statistics
+Row: 25000
+Column: 15
+
+### NA values 
+Description: 7113
+
+Score: 9141
+
+zip_code: 163
+
+avgscoreinarea: 977
