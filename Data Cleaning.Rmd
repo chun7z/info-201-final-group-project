@@ -46,7 +46,16 @@ restmen
 merged <- inner_join(restmen, rest, by = join_by(id))
 write_csv(merged, file = "Documents/data/merged.csv")
 ```
- 
+
+Question 1: What is the range of meal prices?
+```{r}
+merged %>% 
+  filter(!(price == 0)) %>% 
+  arrange(price) %>%
+  filter(rank(desc(price)) < 5 | rank(price) < 5) %>% 
+  select(id, category, name.x, price, score, zip_code)
+```
+
 
 ```{r}
 
