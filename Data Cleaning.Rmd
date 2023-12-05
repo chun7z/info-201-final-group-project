@@ -55,10 +55,15 @@ merged %>%
   filter(rank(desc(price)) < 5 | rank(price) < 5) %>% 
   select(id, category, name.x, price, score, zip_code)
 ```
-
+What is the highest score? What are the restaurants? 
 
 ```{r}
+merged %>% 
+  filter(score != "-Inf" & score == 5.0) %>% 
+  distinct(id, name.y, score)
+```
 
+```{r}
 states <-map_data("state")
 al_df <- subset(states, region == "alabama")
 
