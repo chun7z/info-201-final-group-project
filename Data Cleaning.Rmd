@@ -25,6 +25,7 @@ rest <- rest %>%
   mutate(avgscoreinarea = mean(score, na.rm = TRUE))
 rest
 ```
+
 ```{r}
 restmen$price <- as.numeric(gsub("\\USD", "", restmen$price))
 
@@ -42,11 +43,13 @@ restmen <- restmen %>%
 restmen
 ```
 
+Merging Data:
 ```{r}
 merged <- inner_join(restmen, rest, by = join_by(id))
 write_csv(merged, file = "Documents/data/merged.csv")
 ```
 
+Missing Values:
 ```{r}
 merged %>% 
   filter(is.na(description)) %>% 
@@ -65,7 +68,23 @@ merged %>%
   n_distinct()
 ```
 
-Question 1: What is the range of meal prices?
+Range:
+```{r}
+merged %>% 
+  summarize(range(id))
+merged %>% 
+  summarize(range(price))
+merged %>% 
+  summarize(range(avgprice))  
+merged %>% 
+  summarize(range(position))
+merged %>% 
+  summarize(range(score, na.rm = TRUE))
+merged %>% 
+  summarize(range(avgscoreinarea, na.rm = TRUE))
+```
+
+What is the range of meal prices?
 ```{r}
 merged %>% 
   filter(!(price == 0)) %>% 
@@ -73,14 +92,15 @@ merged %>%
   filter(rank(desc(price)) < 5 | rank(price) < 5) %>% 
   select(id, category, name.x, price, score, zip_code)
 ```
-What is the highest score? What are the restaurants? 
 
+What is the highest score? What are the restaurants? 
 ```{r}
 merged %>% 
   filter(score != "-Inf" & score == 5.0) %>% 
   distinct(id, name.y, score)
 ```
 
+What is the relationship between zip code and the average price of the restaurants?
 ```{r}
 states <-map_data("state")
 al_df <- subset(states, region == "alabama")
@@ -110,6 +130,7 @@ al <- ggplot() +
 al
 ```
 
+ What is the relationship between position popularity and the price of the meal?
 ```{r}
 merged  %>% 
   ggplot(aes(position, avgprice)) +
