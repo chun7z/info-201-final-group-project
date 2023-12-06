@@ -47,6 +47,24 @@ merged <- inner_join(restmen, rest, by = join_by(id))
 write_csv(merged, file = "Documents/data/merged.csv")
 ```
 
+```{r}
+merged %>% 
+  filter(is.na(description)) %>% 
+  n_distinct()
+
+merged %>% 
+  filter(is.na(score)) %>% 
+  n_distinct()
+
+merged %>% 
+  filter(is.na(zip_code)) %>% 
+  n_distinct()
+
+merged %>% 
+  filter(is.na(avgscoreinarea)) %>% 
+  n_distinct()
+```
+
 Question 1: What is the range of meal prices?
 ```{r}
 merged %>% 
