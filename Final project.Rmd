@@ -101,6 +101,7 @@ merged %>%
 ```
 To explore restaurants with the highest score, we filtered through the data set and identified the 6 restaurants with top scores. We found that the highest scoring restaurants were Jeni’s Splendid Ice Cream, Wasabi Juan’s, Honey Baked Ham, Cooking Dough Magic, Papa Johns, and Mr. Lin Chinese Restaurants.
 
+Question 3: What is the relationship between position popularity and the price of the meal?
 ```{r}
 merged  %>% 
   ggplot(aes(position, avgprice)) +
@@ -118,6 +119,7 @@ lm(avgprice ~ position, data = merged)
 
 In the figure above, the r-squared value is <0.01 which means there is a weak and negative relationship between average price and popularity position. The linear regression line indicates that the average price decreases by -0.003231 for every one increase in popularity position. There are several outliers within this figure. Specifically at these four points, (48, 34), (75, 29), (99, 31), (185, 8). 
 
+Question 4: What is the relationship between zip code and the average price of the restaurants?
 ```{r}
 states <-map_data("state")
 al_df <- subset(states, region == "alabama")
