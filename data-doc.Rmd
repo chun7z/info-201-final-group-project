@@ -9,24 +9,24 @@ output: html_document
 The link to the original data source: [Kaggle UberEats Dataset](https://www.kaggle.com/datasets/ahmedshahriarsakib/uber-eats-usa-restaurants-menus/)
 
 ## Variables
-* id (Restaurant id)
-* position (Restaurant position in UberEats search result)
-* name.y (Restaurant name)
-* name.x (Menu meal name)
-* score (Restaurant score)
-* ratings (Ratings count)
-* category (Restaurant category)
-* avgprice (Average price by restaurant)
-* morethanavg (Price more than $12.60)
-* popular (Position greater than or less than 30)
-* avgscoreinarea (Average score by zip code )
-* zip_code (Zip code)
-* lat (Latitude)
-* lng (Longitude)
-* category (Menu category)
-* name (Menu Name)
-* description (Menu description)
-* price (Menu price)
+* id (Restaurant id) - numeric with range 0-363
+* position (Restaurant position in UberEats search result) - numeric with range 1-194
+* name.y (Restaurant name) - character
+* name.x (Menu meal name) - character
+* score (Restaurant score) - numeric with range 3.2-5.0
+* ratings (Ratings count) 
+* category (Restaurant category) - character
+* avgprice (Average price by restaurant) - numeric with range 0-34
+* morethanavg (Price more than $12.60) - numeric with range 0-1
+* popular (Position greater than or less than 30) - numeric with range 0-1
+* avgscoreinarea (Average score by zip code ) - numeric with range 3.5-5.0
+* zip_code (Zip code) - character
+* lat (Latitude) - numeric with range 33.2-34.2
+* lng (Longitude) - numeric with range -87.1--85.8
+* category (Menu category) - character
+* name (Menu Name) - character
+* description (Menu description) - character
+* price (Menu price) - numeric with range 0-130.89
 
 ## Basic Summary Statistics
 Row: 25000
