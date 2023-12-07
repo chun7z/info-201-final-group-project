@@ -1,0 +1,164 @@
+---
+title: "Final Project"
+author: "Michelle Ngo, Chunqi Zhao, Kelly Chang, Eunseo Chung"
+date: "2023-12-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE,
+                  	warning = FALSE)
+library(magick)
+```
+
+## Introduction 
+We chose our topic to be the restaurants near us and the correlation of the data that links within the subject. We mainly focused on the restaurants' places and prices to see the restaurant's rank and the popular meals. We thought this was an interesting topic to research because we wanted to know if the data that are shown in the rating cited are accurate for the restaurants. Also, since most of the restaurants have their rate, we wanted to know the restaurants with the best data sets compared to other restaurants. 
+
+We already know the restaurants' locations and the zip codes without the data, and there are already written reviews other than what we researched about certain restaurants. Because the internet only provides a certain type of data for people to see, we wanted to see all the data related to the restaurant information. The questions and the storyline can start by answering a question about the most popular restaurant in the location and how that is supported by the data we have found. For the audience, this information will help them to see all the factors of deciding a place to order by easier access to information about the restaurants. Another thing that we will talk about is the correlation between the location and the prices. People often find these two the most important factors in deciding a restaurant to order. We will be showing our data in columns to decide if the restaurant will be either popular or unpopular so the audience can make their decision easier. People often ask the question of how ratings work for each restaurant, and that is why we found the variables to figure out the most relatable and the result of the reviews that people mostly care about. We also wanted to value each person’s dining choices and how that can be linked with other variables such as popularity or location of the restaurant can show higher results of variable data than other restaurants. The relationship between zip code and the average price of the restaurants can be shown in our graph specifically on Alabama to show the average price of the meal in each county and how it differs. We also found the range of meal prices in our data additionally to figure out how the range of meal prices can affect the other variables that differentiate the rank of the restaurants. This will be an important case to our project because it overly impacts the final results that we found and this will be the ones that the audience will mainly focus on. This also brings us to get the highest score and find the highest restaurants with the highest variables.
+
+We thought this could be an interesting subject to research about, because almost everyone can use the data we had figured and there is no limit of using it. We thought our report would be very essential to the people who want to see the specific restaurant with the variables they want. It is different from other websites in general, because we have more variables that are considered, and use it to have the highest outcome. This way, the audience can use it without going into different kinds of cites but just by looking at the results that we had for each of the restaurants.
+
+## Data 
+For this final project, we focused on the restaurants and wanted to find the relationship between the elements related to restaurants. Therefore, we found these datasets on Kaggle and will analyze them using the data in them. The data was scraped from the Uber Eats website (https://www.ubereats.com) using Python libraries. Uber Eats is an online food ordering and delivery platform launched by Uber in 2014. It is operational in over 6,000 cities across 45 countries. Given that our data originates directly from the Uber Eats platform, we regard it as a reliable source. The collector of these two datasets is Ahmed Shahriar Sakib on Kaggle. The data and information in the data set provided are intended to be used for educational purposes only. Every signed-up Kaggle user can download the datasets. These datasets contain lists of restaurants and their menus in the USA that are partnered with Uber Eats. In the restaurant dataset, there are more than 63,000 observations and 11 variables, while the restaurant menu dataset is even more expansive, featuring over 5,000,000 observations and 5 variables. 
+Even though the datasets contain a very large number of restaurants, they are still geographically biased, with some states having a higher representation of restaurant samples compared to others. Consequently, our results apply primarily to Uber Eats-partnered restaurants in states where they are prevalent and may not be directly applied to restaurants across the entire United States. The data quality is good. However, while we were pre-processing the datasets, we found that the datasets contained too much data that we had to slice them down to 25,000 rows. Therefore, we've also narrowed our study from the entire United States to Alabama. Additionally, the price in the restaurant menu dataset is stored as a character instead of a numeric variable, making it difficult to analyze. Therefore, we changed that variable to numeric which is easier to use in further research.
+
+## Data pt2
+After cleaning, pre-processing, and merging data, our comprehensive dataset now encompasses crucial details. It includes the restaurant ID, food order name, and order size description (e.g., a whole pie, a slice of pizza, or drink sizes). Additionally, we chose to keep the information on price, price range, rating, score, restaurant zip code, and popularity. A row in our dataset represents a dish that is ordered. 
+
+In the pre-processing phase, we introduced an average price column for each restaurant and calculated the average score for restaurants in specific areas based on their zip codes. We then merged the two datasets with the restaurant ID as the Key.  
+
+There are quite a few data for the rating of the food, score, and the price range the missing values of the score of the food affect the average score in each area. While this may impact the overall score in each area, the abundance of available data ensures meaningful insights and results. Another data that looks out of place in the dataset is that the highest price for one of the dishes is 130 dollars however, we later found out that it was a family meal which is why it cost so much. This data significantly increases the range of food prices as most of the other dishes are single servings. 
+
+Moreover, we created additional categorical and numerical variables within the two data sets. In terms of categorical variables, we classified the popularity of each restaurant based on its position in search engine results. Specifically, we designated a restaurant as 'popular' (1) if its position was less than thirty and 'not popular' (0) if its position was greater than thirty. As for our second categorical variable, we opted to assess whether the restaurant's meal pricing fell below or above the average price range of all restaurants. Additionally, we created numerical columns by calculating the average restaurant score based on zip codes and the average price of meals based on the restaurant. To select our sample, a systematic approach was employed to ensure representative inclusion. After, a random sampling method was utilized to choose a subset of restaurants from this pool, promoting unbiased representation.
+
+## Methods
+In this study, we employed a quantitative research approach to investigate the correlation between zip code and average prices of the restaurants, as well as the relationship between restaurant positional popularity and meal prices. In order to further investigate these relationships, we found a dataset on Kaggle that provided variables on restaurant id, food category, restaurant names, search popularity position, rating, score, price range, zip code, latitude, and longitude. Our second data set included variables such as restaurant id, food categories, dish names, and price. To process our data, we initially performed data cleaning to address any missing or unnecessary columns/variables. Subsequently, we were able to join these two data sets using the common variable restaurant id and kept relevant variables such as food category, restaurant name, price, popularity position, score, restaurant name, rating, zip code, latitude, and longitude.
+
+Furthermore, we utilized the combined dataset to generate four comprehensive visualizations. In the initial table, we conducted a ranking of prices, excluding values set at 0 as they are deemed invalid (considered meal deals). This analysis allowed us to identify both the most economical and the priciest meals. For the second table, our focus shifted to the scores column, where we isolated restaurants that received a perfect score of 5. We extracted essential information such as restaurant name, ID, and score for these top performers. In our graphical representations, the first graph was constructed by plotting data points derived from the average price and position columns. Following this, we applied a linear trend to the data, enabling us to discern the rate of change and y-intercept. This graphical representation provides insights into the overall price trends within the dataset. In our second graph, we harnessed the 'maps' package alongside the latitude and longitude columns to craft a geographical representation of Alabama. The plotted points on the map corresponded to the average prices of meals across different restaurants, organized by zip codes. To enhance the visual impact, we incorporated a color gradient to illustrate the variation in average prices within specific zip code regions. 
+
+```{r}
+library(readr)
+library(tidyverse)
+library(ggplot2)
+library(maps)
+library(ggpubr)
+library(ggpmisc)
+restaurantmenus <- read_delim("Documents/archive/restaurant-menus.csv")
+restmen <- restaurantmenus[1:25000, c(1:5)]
+write_csv(restmen, file = "Documents/data/restmen.csv")
+
+restaurant <- read_delim("Documents/archive/restaurants.csv")
+rest <- restaurant[1:25000, c(1:11)]
+write_csv(rest, file = "Documents/data/rest.csv")
+```
+```{r}
+rest <- rest %>% 
+  select(id, position, name, score, zip_code, lat, lng) %>% 
+  mutate(popular = ifelse(position > 30, 1, 0)) %>% 
+  group_by(zip_code) %>% 
+  mutate(avgscoreinarea = mean(score, na.rm = TRUE))
+```
+
+```{r}
+restmen$price <- as.numeric(gsub("\\USD", "", restmen$price))
+
+meann <- restmen %>% 
+  ungroup() %>% 
+  filter(price > 4) %>%
+  filter(price < 100) %>% 
+  mutate(mp = mean(price, na.rm = TRUE)) 
+
+restmen <- restmen %>% 
+  rename(id = restaurant_id) %>% 
+  group_by(id) %>% 
+  mutate(avgprice = mean(price, na.rm = TRUE)) %>% 
+  mutate(morethanavg = ifelse(price < 12.6, 0, 1))
+```
+
+```{r}
+merged <- inner_join(restmen, rest, by = join_by(id))
+write_csv(merged, file = "Documents/data/merged.csv")
+```
+
+## Results
+
+Question 1: What is the range of meal prices?
+```{r}
+merged %>% 
+  filter(!(price == 0)) %>% 
+  arrange(price) %>%
+  filter(rank(desc(price)) < 5 | rank(price) < 5) %>% 
+  select(id, category, name.x, price, score, zip_code)
+```
+
+For the first question, we would like to explore the range of meals in the dataset. We filter out the meals that cost $0 because they are basically deals. We rearranged the dataset by price and got the most and least expensive meals. The cheapest meals are mostly sides and condiments, and the most expensive meals are mainly family meals and party size.
+
+Question 2: What is the highest score? What are the restaurants? 
+```{r}
+merged %>% 
+  filter(score != "-Inf" & score == 5.0) %>% 
+  distinct(id, name.y, score)
+```
+To explore restaurants with the highest score, we filtered through the data set and identified the 6 restaurants with top scores. We found that the highest scoring restaurants were Jeni’s Splendid Ice Cream, Wasabi Juan’s, Honey Baked Ham, Cooking Dough Magic, Papa Johns, and Mr. Lin Chinese Restaurants.
+
+```{r}
+merged  %>% 
+  ggplot(aes(position, avgprice)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  stat_poly_eq(formula = y ~ x, 
+               aes(label = paste(..rr.label.., sep = " ~ ")),
+               parse = TRUE,
+               size = 4) +
+
+  labs(x = "Popularity position", y = "Average price", title = "Average price vs. Popularity Position")
+
+lm(avgprice ~ position, data = merged)
+```
+
+In the figure above, the r-squared value is <0.01 which means there is a weak and negative relationship between average price and popularity position. The linear regression line indicates that the average price decreases by -0.003231 for every one increase in popularity position. There are several outliers within this figure. Specifically at these four points, (48, 34), (75, 29), (99, 31), (185, 8). 
+
+```{r}
+states <-map_data("state")
+al_df <- subset(states, region == "alabama")
+
+counties <-map_data("county")
+ca_county <- subset(counties, region == "alabama")
+
+al <- ggplot() +
+  geom_polygon(data = al_df, aes(x = long, y = lat, group = group), color = 'gray', fill = "gray", alpha = 1) +
+  geom_polygon(data = ca_county, aes(x = long, y = lat, group = group), fill = "gray", color = "white") +
+  geom_point(data = merged, aes(x = lng, y = lat, col = avgprice), size = 0.1, alpha = 0.01) +
+  geom_path(data = al_df, aes(x = long, y = lat, group = group), color = 'black', size = 1) + 
+  xlim(-90, -82.5) + ylim(30.2, 35.2) +
+  coord_fixed(1.3) +
+  labs(x = "Longitude", y = "Latitude", title = "Average price vs. zip code", col = "Average price")
+al
+
+img6 <- image_read("Desktop/ss5.png")
+plot(img6)
+```
+
+In this figure, the graph shows the average price of meals at each restaurant in a certain zip code- the state of Alabama. The close-up image of the data points showcases the varying average prices within Jefferson and Etowah County. Most of the data points appear to be focused in Jefferson County, while some are focused in Etowah County. In Jefferson County, the average price appears to exhibit a lighter tone indicating that most of the average prices within this area are above $20. There are some data points that reveal a darker blue tone, indicating that some of these areas have lower average prices. 
+
+## Discussion 
+
+In the first figure, the cheapest meals are sauces and side dishes and the most expensive meals are family meals or party size. The variety of meals covered in this dataset is very large, ranging from sauces and beverages to expensive meals for multiple people, so we need to be aware of the price differences between different meal types when conducting subsequent research. 
+
+In our second figure, we discovered that 6 restaurants had the highest scores, these restaurants are named Jeni’s Splendid Ice Cream, Wasabi Juan’s, Honey Baked Ham, Cooking Dough Magic, Papa Johns, and Mr. Lin Chinese Restaurants. These establishments represent excellent choices for individuals seeking 5-star rated dining experiences, reflecting their consistent commitment to delivering exceptional quality and customer satisfaction
+
+In the third figure, the obtained results reveal interesting insights into the relationship between position popularity and the average price of meals in our dataset. The calculated r-squared value, which is less than 0.01, suggests a very weak association between these two variables. In statistical terms, this low r-squared value implies that the variation in the average price of meals is not substantially explained by changes in position popularity. Furthermore, the negative relationship observed when fitting a linear line onto the dataset indicates a potential downward trend. This means that as the position popularity increases, the average price of meals tends to decrease. However, it's crucial to note that the weak association and low r-squared value suggest that this observed trend might not be reliable or meaningful. Several factors could contribute to this weak association and apparent negative relationship. It's possible that other unaccounted variables play a more significant role in determining the average price of meals, overshadowing the influence of position popularity. Additionally, outliers or specific instances in the dataset might be disproportionately affecting the overall trend.
+
+
+In the final figure, the presented figure provides a visual representation of the average prices of meals in different restaurants across specific zip codes within the state of Alabama, with a closer examination of Jefferson and Etowah County. The data points on the graph offer insights into the distribution of average prices in these counties. It becomes evident that the majority of data points are concentrated in Jefferson County, suggesting a higher density of restaurants in this area. This concentration might be indicative of more restaurants in the area or a higher population density. The color gradient employed in the graph serves as an effective visual tool to convey the range of average prices within each county. In Jefferson County, the lighter tones dominate, particularly above the $20 threshold. This implies that a significant portion of restaurants in this county tends to have higher average prices for their meals. The darker blue tones, however, within Jefferson County, indicate pockets of areas where the average prices are comparatively lower. The focus on Etowah County, although less dense in data points, reveals a variation in average prices as well. While not as prominently concentrated as Jefferson County, Etowah County exhibits a diversity in meal prices, with some areas reflecting higher average prices in lighter tones and others in darker tones indicating more affordable options.
+
+The results we got can be only extended and applied to the restaurants in the state of Alabama because all of the data in the dataset is collected from restaurants in Alabama. 
+
+In our future endeavors, expanding the geographical scope of our analysis by incorporating data from diverse zip codes will provide a more comprehensive understanding. Removing the constraint of a 25,000-line code limit opens up opportunities to delve deeper into regional variations in food preferences, pricing dynamics, and restaurant popularity.
+
+As we broaden our perspective to encompass the entire United States, we aim to gain insights into the scale of Uber Eats usage. By exploring user behavior data, we can discern patterns such as the frequency of app usage, favored cuisines, and average order values. This investigation will contribute to a nuanced analysis of Uber Eats' role in the broader food delivery landscape.
+
+To enhance the depth of our analysis, we will also pay specific attention to areas where data is currently missing, particularly in the scores column. A dedicated effort to find additional data for these missing values will contribute to a more complete and accurate representation of restaurant performance.
+
+## Conclusion
+
