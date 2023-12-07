@@ -1,5 +1,5 @@
 ---
-title: "Final Project"
+title: "Final Project Report"
 author: "Michelle Ngo, Chunqi Zhao, Kelly Chang, Eunseo Chung"
 date: "2023-12-01"
 output: html_document
