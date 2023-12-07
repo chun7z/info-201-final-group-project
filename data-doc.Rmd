@@ -14,7 +14,6 @@ The link to the original data source: [Kaggle UberEats Dataset](https://www.kagg
 * name.y (Restaurant name) - character
 * name.x (Menu meal name) - character
 * score (Restaurant score) - numeric with range 3.2-5.0
-* ratings (Ratings count) 
 * category (Restaurant category) - character
 * avgprice (Average price by restaurant) - numeric with range 0-34
 * morethanavg (Price more than $12.60) - numeric with range 0-1
